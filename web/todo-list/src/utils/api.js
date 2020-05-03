@@ -2,7 +2,7 @@ import axios from 'axios';
 import router from '@/router';
 
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL ='http://127.0.0.1:8080/api/v1'; //填写域名
+axios.defaults.baseURL ='http://184.172.234.86:30080/api/v1'; //填写域名
 
 //http request 拦截器
 axios.interceptors.request.use(

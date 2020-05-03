@@ -54,7 +54,7 @@ spec:
             - name: TODO_SELECT_URI
               value: "todo-select-provider"
             - name: TODO_WRITE_PORT
-              value: "20880"
+              value: "8080"
             - name: TODO_WRITE_URI
               value: "todo-write-provider"
             - name: WEB_PORT
@@ -73,7 +73,7 @@ metadata:
 spec:
   ports:
   - port: 20880
-    name: http
+    name: grpc
   selector:
     app: todo-select-provider
 ---
@@ -124,8 +124,8 @@ metadata:
     service: todo-write-provider
 spec:
   ports:
-  - port: 20880
-    name: http
+  - port: 8080
+    name: grpc
   selector:
     app: todo-write-provider
 ---
@@ -164,5 +164,5 @@ spec:
             - name: GORM_URI
               value: "root:root@tcp(mysql:3306)/demo?charset=utf8&parseTime=True&loc=Local"
             - name: RPC_PORT
-              value: "20880"
+              value: "8080"
 ---

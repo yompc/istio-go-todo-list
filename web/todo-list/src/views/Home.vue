@@ -63,7 +63,7 @@
                     </v-list-item-content>
                     <v-btn small fab dark color="success" @click="updateStatus(tasks.id)"><v-icon dark>mdi-check</v-icon></v-btn>
                     <v-btn small fab dark color="primary" @click="updateTask(tasks.id,tasks.title)"><v-icon dark>mdi-update</v-icon></v-btn>
-                    <v-btn small fab dark color="error" @click="dialog.status=true,dialog.status=tasks.id"><v-icon dark>mdi-delete</v-icon></v-btn>
+                    <v-btn small fab dark color="error" @click="saveDeleteTodo(tasks.id)"><v-icon dark>mdi-delete</v-icon></v-btn>
                   </template>
                     </v-list-item>
                         <v-list-item v-if="taskList.length===0">
@@ -180,6 +180,10 @@ export default {
                     this.getAllTask()
                 }
             })
+    },
+    saveDeleteTodo(id){
+      this.dialog.id=id
+      this.dialog.status=true
     },
     deleteTodo(id){
         this.$api.deleteTodo(id)
