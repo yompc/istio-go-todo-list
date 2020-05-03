@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: todo-comsumer-53
+  name: todo-comsumer
 spec:
   hosts:
   - todo-comsumer
@@ -23,7 +23,6 @@ spec:
     - destination:
         host: todo-select-provider
         subset: v1
-      weight: 100
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
@@ -37,4 +36,3 @@ spec:
     - destination:
         host: todo-write-provider
         subset: v1
-      weight: 100

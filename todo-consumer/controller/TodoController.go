@@ -1,8 +1,8 @@
 package controller
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/rs/zerolog/log"
 	"net/http"
 	"strconv"
 	"yom535.coding.net/todo-consumer/service"
@@ -12,6 +12,7 @@ func GetAllTodo(c *gin.Context) {
 	allTodo, err := service.TodoSelectService()
 
 	if err!=nil {
+		log.Error().Err(err).Caller()
 		c.JSON(http.StatusOK,gin.H{
 			"code":40000,
 			"message":"查询所有失败",
@@ -49,7 +50,7 @@ func CreateTodo(c *gin.Context)  {
 	var getTitle = title{}
 	err := c.BindJSON(&getTitle)
 	if err != nil {
-		fmt.Println(err)
+		log.Error().Err(err).Caller()
 		c.JSON(http.StatusBadRequest,gin.H{
 			"code":40000,
 			"message":"新建Task失败",
@@ -75,7 +76,7 @@ func CreateTodo(c *gin.Context)  {
 	}
 	err = service.CreateTodo(&request)
 	if err != nil {
-		fmt.Println(err)
+		log.Error().Err(err).Caller()
 		c.JSON(http.StatusBadRequest,gin.H{
 			"code":40000,
 			"message":"新建Task失败",
@@ -102,6 +103,7 @@ func UpdateTodoStateById(c *gin.Context)  {
 	}
 	err := service.UpdateTodoStateById(&request)
 	if err!=nil {
+		log.Error().Err(err).Caller()
 		c.JSON(http.StatusOK,gin.H{
 			"code":40000,
 			"message":"修改Todo状态失败",
@@ -142,7 +144,7 @@ func UpdateTodoTitleById(c *gin.Context)  {
 	}
 	err := service.UpdateTodoTitleById(&request)
 	if err!=nil {
-
+		log.Error().Err(err).Caller()
 		c.JSON(http.StatusOK,gin.H{
 			"code":40000,
 			"message":"修改Todo内容失败",
@@ -169,6 +171,7 @@ func DeleteTodoById(c *gin.Context)  {
 	}
 	err := service.DeleteTodoById(&request)
 	if err!=nil {
+		log.Error().Err(err).Caller()
 		c.JSON(http.StatusOK,gin.H{
 			"code":40000,
 			"message":"删除todo :"+formId+" 失败",

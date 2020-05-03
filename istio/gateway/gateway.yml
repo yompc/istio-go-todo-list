@@ -28,6 +28,6 @@ spec:
         prefix: /api/v1/todo
     route:
     - destination:
-        host: todo-gateway
+        host: todo-consumer
         port:
           number: 8080
