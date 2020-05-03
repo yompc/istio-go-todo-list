@@ -10,7 +10,6 @@ import (
 
 func GetAllTodo(c *gin.Context) {
 	allTodo, err := service.TodoSelectService()
-
 	if err!=nil {
 		log.Error().Err(err).Caller()
 		c.JSON(http.StatusOK,gin.H{

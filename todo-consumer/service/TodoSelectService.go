@@ -27,6 +27,7 @@ func getConfg()  {
 
 func TodoSelectService() (response *TodoResponse,err error) {
 	getConfg()
+	log.Info().Caller().Msg("conn :"+TodoSelectServiceUri+":"+TodoSelectServicePort)
 	TodoSelectConn, err := grpc.Dial(TodoSelectServiceUri+":"+TodoSelectServicePort,grpc.WithInsecure())
 	if err!=nil {
 		log.Error().Err(err)
