@@ -10,11 +10,12 @@ var (
  DB *gorm.DB
 )
 func InitMySQL()(err error) {
+	viper.BindEnv("gorm.uri","GORM_URI")
 	viper.SetDefault("gorm.dialect", "mysql")
 	viper.SetDefault("gorm.uri", "root:root@tcp(127.0.0.1:3306)/demo?charset=utf8&parseTime=True&loc=Local")
 	var dialect = viper.GetString("gorm.dialect")
 	var uri = viper.GetString("gorm.uri")
-	viper.BindEnv("gorm.uri","GORM_URI")
+
 	DB, err = gorm.Open(dialect, uri)
 	if err != nil {
 		log.Error().Err(err).Caller()

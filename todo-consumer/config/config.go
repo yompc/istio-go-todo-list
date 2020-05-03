@@ -14,5 +14,4 @@ func InitConfig()  {
 		panic(fmt.Errorf("Fatal error config file: %s \n", err))
 	}
 
-
 }

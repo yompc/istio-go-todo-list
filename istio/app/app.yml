@@ -1,0 +1,168 @@
+##################################################################################################
+# todo-consumer
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-consumer
+  labels:
+    app: todo-consumer
+    service: todo-consumer
+spec:
+  ports:
+  - port: 8080
+    name: http
+  selector:
+    app: todo-consumer
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: todo-consumer
+  labels:
+    account: todo-consumer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-consumer
+  labels:
+    app: todo-consumer
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-consumer
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: todo-consumer
+        version: v1
+    spec:
+      serviceAccountName: todo-consumer
+      containers:
+      - name: todo-consumer
+        image: registry.us-west-1.aliyuncs.com/yom535/go-todo-list:todo-consumer
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        env:
+            - name: TODO_SELECT_PORT
+              value: "20880"
+            - name: TODO_SELECT_URI
+              value: "todo-select-provider"
+            - name: TODO_WRITE_PORT
+              value: "20880"
+            - name: TODO_WRITE_URI
+              value: "todo-write-provider"
+            - name: web.port
+              value: "8081"
+---
+##################################################################################################
+# todo-select-provider
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-select-provider
+  labels:
+    app: todo-select-provider
+    service: todo-select-provider
+spec:
+  ports:
+  - port: 20880
+    name: http
+  selector:
+    app: todo-select-provider
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: todo-select-provider
+  labels:
+    account: todo-select-provider
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-select-provider
+  labels:
+    app: todo-select-provider
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-select-provider
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: todo-select-provider
+        version: v1
+    spec:
+      serviceAccountName: todo-select-provider
+      containers:
+      - name: todo-select-provider
+        image: registry.us-west-1.aliyuncs.com/yom535/go-todo-list:todo-select-provider
+        imagePullPolicy: Always
+        env:
+            - name: GORM_URI
+              value: "root:root@tcp(mysql:3306)/demo?charset=utf8&parseTime=True&loc=Local"
+---
+##################################################################################################
+# todo-write-provider
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-write-provider
+  labels:
+    app: todo-write-provider
+    service: todo-write-provider
+spec:
+  ports:
+  - port: 20880
+    name: http
+  selector:
+    app: todo-write-provider
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: todo-write-provider
+  labels:
+    account: todo-write-provider
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-write-provider
+  labels:
+    app: todo-write-provider
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-write-provider
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: todo-write-provider
+        version: v1
+    spec:
+      serviceAccountName: todo-write-provider
+      containers:
+      - name: todo-write-provider
+        image: registry.us-west-1.aliyuncs.com/yom535/go-todo-list:todo-write-provider
+        imagePullPolicy: Always
+        env:
+            - name: GORM_URI
+              value: "root:root@tcp(mysql:3306)/demo?charset=utf8&parseTime=True&loc=Local"
+            - name: RPC_PORT
+              value: "20880"
+---

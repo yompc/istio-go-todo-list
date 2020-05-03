@@ -15,14 +15,14 @@ var (
 )
 
 func getConfg()  {
-	TodoSelectServicePort = viper.GetString("todo.select.port")
-	TodoSelectServiceUri = viper.GetString("todo.select.uri")
-	TodoWriteServicePort = viper.GetString("todo.write.port")
-	TodoWriteServiceUri = viper.GetString("todo.write.uri")
 	_ = viper.BindEnv("todo.select.port", "TODO_SELECT_PORT")
 	_ = viper.BindEnv("todo.select.uri", "TODO_SELECT_URI")
 	_ = viper.BindEnv("todo.write.port", "TODO_WRITE_PORT")
 	_ = viper.BindEnv("todo.write.uri", "TODO_WRITE_URI")
+	TodoSelectServicePort = viper.GetString("todo.select.port")
+	TodoSelectServiceUri = viper.GetString("todo.select.uri")
+	TodoWriteServicePort = viper.GetString("todo.write.port")
+	TodoWriteServiceUri = viper.GetString("todo.write.uri")
 }
 
 func TodoSelectService() (response *TodoResponse,err error) {

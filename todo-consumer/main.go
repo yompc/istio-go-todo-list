@@ -7,10 +7,13 @@ import (
 )
 
 func main() {
+
 	config.InitConfig()
+
 	//初始化路由
+
 	todoRouter := router.SetupTodoRouter()
+	viper.BindEnv("web.port","WEB_PORT")
 	webPort := viper.GetString("web.port")
-	_ = viper.BindEnv("web.port", "WEB_PORT")
 	todoRouter.Run("0.0.0.0:"+webPort)
 }

@@ -15,7 +15,7 @@ func main() {
 	//加载配置
 	config.InitConfig()
 	//END 加载配置
-
+	_ = viper.BindEnv("rpc.port","RPC_PORT")
 	//MySQL数据库初始化
 	err := dao.InitMySQL()
 	if err != nil {
@@ -27,7 +27,7 @@ func main() {
 	//开启GRPC服务端
 	server := grpc.NewServer()
 	service.RegisterTodoServiceServer(server,new(service.TodoService))
-	_ = viper.BindEnv("rpc.port","RPC_PORT")
+
 	var rpcPort = viper.GetString("rpc.port")
 	listen, _ := net.Listen("tcp", "0.0.0.0:"+rpcPort)
 	log.Info().Msg("GRPC Provider Start 0.0.0.0:"+rpcPort)
