@@ -26,8 +26,8 @@ func main() {
 	server := grpc.NewServer()
 	service.RegisterTodoServiceServer(server,new(service.TodoService))
 	rpcPort := viper.GetString("rpc.port")
-	listen, _ := net.Listen("tcp", "0.0.0.0:"+rpcPort)
-	log.Info().Msg("GRPC Provider start 0.0.0.0:"+rpcPort)
+	listen, _ := net.Listen("tcp", ":"+rpcPort)
+	log.Info().Msg("GRPC Provider start :"+rpcPort)
 	err = server.Serve(listen)
 	if err != nil {
 		log.Error().Err(err).Caller()
