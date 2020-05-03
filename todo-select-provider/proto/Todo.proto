@@ -1,0 +1,32 @@
+syntax = "proto3";
+package service;
+
+message Todo{
+    int64   id = 1;
+    string  title = 2;
+    bool    status = 3;
+
+}
+
+message TodoRequest{
+}
+
+message TodoResponse{
+    repeated Todo todo = 1;
+}
+
+message TodoWriteRequest{
+    Todo todo = 1;
+}
+
+message TodoWriteResponse{
+    int32 status = 1 ;
+}
+
+service TodoService{
+    rpc TodoDTO(TodoRequest) returns(TodoResponse);
+    rpc CreateTodo(TodoWriteRequest) returns(TodoWriteResponse);
+    rpc UpdateTodoStateById(TodoWriteRequest) returns(TodoWriteResponse);
+    rpc UpdateTodoTitleById(TodoWriteRequest) returns(TodoWriteResponse);
+    rpc DeleteTodoById(TodoWriteRequest) returns(TodoWriteResponse);
+}
