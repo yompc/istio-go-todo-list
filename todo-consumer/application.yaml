@@ -1,7 +1,7 @@
 todo:
   select:
-    port: 20880       #TODO_SELECT_PORT
-    uri: 127.0.0.1    #TODO_SELECT_URI
+    port: 32366       #TODO_SELECT_PORT
+    uri: 184.172.234.86    #TODO_SELECT_URI
   write:
     port: 20881       #TODO_WRITE_PORT
     uri: 127.0.0.1    #TODO_WRITE_URI

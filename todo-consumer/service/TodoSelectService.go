@@ -5,6 +5,7 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
+	"time"
 )
 
 var (
@@ -27,12 +28,18 @@ func getConfg()  {
 
 func TodoSelectService() (response *TodoResponse,err error) {
 	getConfg()
+
+	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(3*time.Second))
+	defer cancel()
+
+
 	log.Info().Caller().Msg("conn :"+TodoSelectServiceUri+":"+TodoSelectServicePort)
-	TodoSelectConn, err := grpc.Dial(TodoSelectServiceUri+":"+TodoSelectServicePort,grpc.WithInsecure())
+	TodoSelectConn, err := grpc.DialContext(ctx,TodoSelectServiceUri+":"+TodoSelectServicePort,grpc.WithInsecure())
 	if err!=nil {
 		log.Error().Err(err)
 	}
 	todoClient := NewTodoServiceClient(TodoSelectConn)
+
 	Todos, err := todoClient.TodoDTO(context.Background(),&TodoRequest{})
 	return Todos,err
 }
