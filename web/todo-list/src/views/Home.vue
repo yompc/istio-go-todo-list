@@ -51,6 +51,7 @@
                     
                     <v-list-item-content>
                       <v-text-field
+                        v-model="tasks.title"
                         :value="tasks.title"
                         v-if="tasks.status===true"
                         style="text-decoration:line-through"
