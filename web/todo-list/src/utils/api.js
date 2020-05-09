@@ -1,9 +1,10 @@
 import axios from 'axios';
 import router from '@/router';
+import store from '@/store';
 
 axios.defaults.timeout = 5000;
-axios.defaults.baseURL =location.protocol+'//'+location.hostname+'/api/v1'; //填写域名
-
+// axios.defaults.baseURL =location.protocol+'//'+location.hostname+'/api/v1'; //填写域名
+axios.defaults.baseURL ='http://127.0.0.1:8081/api/v1';
 //http request 拦截器
 axios.interceptors.request.use(
     config => {
@@ -29,11 +30,12 @@ axios.interceptors.response.use(response => {
                 console.log('错误请求')
                 break;
             case 401:
-                router.push({path:'/'})
+                store.state.token=''
+                router.push({path:'/login'})
                 console.log('未授权，请重新登录')
                 break;
             case 403:
-                router.push({path:'/'})
+                router.push({path:'/login'})
                 console.log('拒绝访问')
                 break;
             case 404:
@@ -46,7 +48,6 @@ axios.interceptors.response.use(response => {
                 console.log('请求超时')
                 break;
             case 500:
-
                 console.log('服务器端出错')
                 break;
             case 501:
@@ -72,6 +73,7 @@ axios.interceptors.response.use(response => {
     }
     return Promise.resolve(err.response)
 })
+
 
 
 /**
@@ -168,5 +170,8 @@ export const api = {
             title:task,
         }
         return post('/todo/update/title',result)
+    },
+    login:function (data) {
+        return post('/user/login',data)
     }
 }

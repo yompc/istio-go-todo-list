@@ -194,8 +194,13 @@ export default {
                     this.message.status=true;
                     this.message.color='success';
                     this.getAllTask()
+                }else {
+                    this.message.text=res.message;
+                    this.message.status=true;
+                    this.message.color='error';
                 }
             })
+
     },
     updateStatus(id){
         this.$api.updateStatus(id)
@@ -205,6 +210,10 @@ export default {
                     this.message.status=true;
                     this.message.color='success';
                     this.getAllTask()
+                }else {
+                    this.message.text=res.message;
+                    this.message.status=true;
+                    this.message.color='error';
                 }
             })
     },
