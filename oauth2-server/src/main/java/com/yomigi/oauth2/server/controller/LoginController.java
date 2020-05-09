@@ -3,11 +3,12 @@ package com.yomigi.oauth2.server.controller;
 import com.google.common.collect.Maps;
 import com.yomigi.oauth2.server.controller.dto.LoginParam;
 import com.yomigi.oauth2.server.controller.dto.ResponseResult;
+import com.yomigi.oauth2.server.service.impl.UserDetailsServiceImpl;
 import com.yomigi.oauth2.server.utils.MapperUtils;
 import com.yomigi.oauth2.server.utils.OkHttpClientUtil;
 import okhttp3.Response;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -34,9 +35,8 @@ import java.util.Objects;
 public class LoginController {
     private static final String URL_OAUTH_TOKEN="http://127.0.0.1:9000/oauth/token";
 
-    @Resource(name = "userDetailsServiceBean")
-    UserDetailsService userDetailsService;
-
+    @Resource
+    UserDetailsServiceImpl userDetailsService;
     @Resource
     BCryptPasswordEncoder passwordEncoder;
 
