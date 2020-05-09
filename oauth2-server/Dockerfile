@@ -1,4 +1,4 @@
-FROM openjdk:8u191-jre-alpine3.9
+FROM openjdk:11
 MAINTAINER LiuFengJia
 RUN apk add tzdata && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
