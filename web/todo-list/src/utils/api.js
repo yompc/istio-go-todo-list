@@ -3,8 +3,8 @@ import router from '@/router';
 import store from '@/store';
 
 axios.defaults.timeout = 5000;
-// axios.defaults.baseURL =location.protocol+'//'+location.hostname+'/api/v1'; //填写域名
-axios.defaults.baseURL ='http://127.0.0.1:8081/api/v1';
+axios.defaults.baseURL =location.protocol+'//'+location.hostname+'/api/v1'; //填写域名
+//axios.defaults.baseURL ='http://127.0.0.1:8081/api/v1';
 //http request 拦截器
 axios.interceptors.request.use(
     config => {
