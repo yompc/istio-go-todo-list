@@ -214,4 +214,7 @@ spec:
       - name: oauth2-server
         image: registry.us-west-1.aliyuncs.com/yom535/go-todo-list:oauth2-server
         imagePullPolicy: Always
+        env:
+            - name: MYSQL_URL
+              value: "jdbc:mysql://mysql:3306/demo?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=GMT"
 ---
