@@ -166,3 +166,52 @@ spec:
             - name: RPC_PORT
               value: "8080"
 ---
+##################################################################################################
+# 	oauth2-server
+##################################################################################################
+apiVersion: v1
+kind: Service
+metadata:
+  name: oauth2-server
+  labels:
+    app: oauth2-server
+    service: oauth2-server
+spec:
+  ports:
+  - port: 9000
+    name: http
+  selector:
+    app: oauth2-server
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: oauth2-server
+  labels:
+    account: oauth2-server
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oauth2-server
+  labels:
+    app: oauth2-server
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oauth2-server
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: oauth2-server
+        version: v1
+    spec:
+      serviceAccountName: oauth2-server
+      containers:
+      - name: oauth2-server
+        image: registry.us-west-1.aliyuncs.com/yom535/go-todo-list:oauth2-server
+        imagePullPolicy: Always
+---
