@@ -5,7 +5,6 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
-	"time"
 )
 
 var (
@@ -16,10 +15,6 @@ var (
 )
 
 func getConfg()  {
-	_ = viper.BindEnv("todo.select.port", "TODO_SELECT_PORT")
-	_ = viper.BindEnv("todo.select.uri", "TODO_SELECT_URI")
-	_ = viper.BindEnv("todo.write.port", "TODO_WRITE_PORT")
-	_ = viper.BindEnv("todo.write.uri", "TODO_WRITE_URI")
 	TodoSelectServicePort = viper.GetString("todo.select.port")
 	TodoSelectServiceUri = viper.GetString("todo.select.uri")
 	TodoWriteServicePort = viper.GetString("todo.write.port")
@@ -28,18 +23,13 @@ func getConfg()  {
 
 func TodoSelectService() (response *TodoResponse,err error) {
 	getConfg()
-
-	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(3*time.Second))
-	defer cancel()
-
-
-	log.Info().Caller().Msg("conn :"+TodoSelectServiceUri+":"+TodoSelectServicePort)
-	TodoSelectConn, err := grpc.DialContext(ctx,TodoSelectServiceUri+":"+TodoSelectServicePort,grpc.WithInsecure())
+	//log.Info().Caller().Msg("conn :"+TodoSelectServiceUri+":"+TodoSelectServicePort)
+	TodoSelectConn, err := grpc.Dial(TodoSelectServiceUri+":"+TodoSelectServicePort,grpc.WithInsecure())
 	if err!=nil {
 		log.Error().Err(err)
 	}
 	todoClient := NewTodoServiceClient(TodoSelectConn)
-
+	defer TodoSelectConn.Close()
 	Todos, err := todoClient.TodoDTO(context.Background(),&TodoRequest{})
 	return Todos,err
 }
