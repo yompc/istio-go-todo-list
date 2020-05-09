@@ -8,7 +8,7 @@ spring:
     name: oauth2-server
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${MYSQL_URL:jdbc:mysql://mysql:3306/oauth2_server?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=GMT}
+    url: ${MYSQL_URL:jdbc:mysql://184.172.234.86:30306/demo?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=GMT}
     username: root
     password: root
 management:
