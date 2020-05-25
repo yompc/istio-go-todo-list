@@ -27,7 +27,7 @@
             md="1"
             lg="1"
           >
-            <v-btn  large color="cyan lighten-5" @click="createTask">添加</v-btn>
+            <v-btn  large color="cyan lighten-5" @click="createTask">ADD</v-btn>
           </v-col>
           <v-col
             cols="24"
