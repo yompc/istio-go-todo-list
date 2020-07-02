@@ -1,0 +1,38 @@
+# apiVersion: networking.istio.io/v1alpha3
+# kind: VirtualService
+# metadata:
+#   name: todo-comsumer
+# spec:
+#   hosts:
+#   - todo-comsumer
+#   http:
+#   - route:
+#     - destination:
+#         host: todo-comsumer
+#         subset: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: todo-select-provider
+spec:
+  hosts:
+  - todo-select-provider
+  http:
+  - route:
+    - destination:
+        host: todo-select-provider
+        subset: v1
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: todo-write-provider
+spec:
+  hosts:
+  - todo-write-provider
+  http:
+  - route:
+    - destination:
+        host: todo-write-provider
+        subset: v1

@@ -1,0 +1,12 @@
+todo:
+  select:
+    port: 20880       #TODO_SELECT_PORT
+    uri: 127.0.0.1    #TODO_SELECT_URI
+  write:
+    port: 20881       #TODO_WRITE_PORT
+    uri: 127.0.0.1    #TODO_WRITE_URI
+check:
+  token:
+    url: http://oauth2-server:9000/oauth/check_token
+web:
+  port: 8080          #WEB_PORT

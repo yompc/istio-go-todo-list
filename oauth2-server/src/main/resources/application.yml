@@ -1,0 +1,24 @@
+spring:
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  application:
+    name: oauth2-server
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${MYSQL_URL:jdbc:mysql://184.172.234.86:30306/demo?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&useSSL=false&serverTimezone=GMT}
+    username: root
+    password: root
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  port: 9000
+
+logging:
+  level:
+    org.springframework.security: INFO

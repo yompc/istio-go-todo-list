@@ -1,0 +1,7 @@
+{
+  "name": "proxy",
+  "version": 2,
+  "routes": [
+    {"src": "/api(.*)","dest": "http://184.172.229.202:30080/api$1"}
+  ]
+}
