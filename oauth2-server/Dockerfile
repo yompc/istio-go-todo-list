@@ -1,4 +1,4 @@
-FROM 3.6.3-jdk-8
+FROM maven:3.6.3-jdk-8
 MAINTAINER LiuFengJia
 RUN ls -al
 RUN mvn clean package
