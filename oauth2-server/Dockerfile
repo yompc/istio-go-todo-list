@@ -6,6 +6,5 @@ RUN ls -al
 WORKDIR /root/go-todo-list/oauth2-server
 RUN mvn clean package
 RUN ls -al
-COPY target/oauth2-server-0.0.1-SNAPSHOT.jar /app.jar
 EXPOSE 9000
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","target/oauth2-server-0.0.1-SNAPSHOT.jar"]
