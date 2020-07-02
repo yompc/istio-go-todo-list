@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/java/maven:8u252-zulu-debian10
+FROM 3.6.3-jdk-8
 MAINTAINER LiuFengJia
 RUN ls -al
 RUN mvn clean package
