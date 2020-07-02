@@ -5,7 +5,7 @@ RUN git clone https://github.com/yompc/go-todo-list.git
 RUN ls -al
 WORKDIR /root/go-todo-list/oauth2-server
 RUN mvn clean package
-RUN ls -al 
-COPY /root/go-todo-list/oauth2-server/target/oauth2-server-0.0.1-SNAPSHOT.jar /app.jar
+RUN ls -al
+COPY target/oauth2-server-0.0.1-SNAPSHOT.jar /app.jar
 EXPOSE 9000
 ENTRYPOINT ["java","-jar","/app.jar"]
