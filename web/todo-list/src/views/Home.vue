@@ -31,7 +31,7 @@
           </v-col>
           <v-col
             cols="24"
-            sm="5"
+            sm="12"
             md="7"
             lg="7"
           >
