@@ -32,6 +32,7 @@
                                             label="用户名"
                                             name="username"
                                             type="text"
+                                            @keyup.enter="login"
                                     />
 
                                     <v-text-field
@@ -40,6 +41,7 @@
                                             label="密码"
                                             name="password"
                                             type="password"
+                                            @keyup.enter="login"
                                     />
                                 </v-form>
                             </v-card-text>
