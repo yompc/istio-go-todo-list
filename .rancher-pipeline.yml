@@ -17,7 +17,6 @@ stages:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: yom535/example:v1
-      pushRemote: true
       registry: 127.0.0.1:34834
 timeout: 60
 notification: {}
