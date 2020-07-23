@@ -1,21 +1,9 @@
 stages:
-- name: 打包
-  steps:
-  - runScriptConfig:
-      image: golang:latest
-      shellScript: |-
-        ls -al
-        mkdir -p $GOPATH/src/yom535.coding.net/todo-consumer
-        cd todo-consumer
-        cp -r . $GOPATH/src/yom535.coding.net/todo-consumer
-        cd $GOPATH/src/yom535.coding.net/todo-consumer
-        ls -al
-        go build .
-- name: 发送镜像
+- name: 构建发布镜像
   steps:
   - publishImageConfig:
       dockerfilePath: ./todo-consumer/Dockerfile
-      buildContext: .
+      buildContext: ./todo-consumer
       tag: yom535/example:v1
       pushRemote: true
       registry: registry.us-west-1.aliyuncs.com
