@@ -7,5 +7,9 @@ stages:
       tag: yom535/example:v1
       pushRemote: true
       registry: registry.us-west-1.aliyuncs.com
+- name: 发布k8s
+  steps:
+  - applyYamlConfig:
+      path: ./todo-consumer/k8s.yml
 timeout: 60
 notification: {}
