@@ -14,7 +14,7 @@ stages:
 - name: 发送镜像
   steps:
   - publishImageConfig:
-      dockerfilePath: ./Dockerfile
+      dockerfilePath: ./todo-consumer/Dockerfile
       buildContext: .
       tag: yom535/example:v1
       registry: 127.0.0.1:34834
