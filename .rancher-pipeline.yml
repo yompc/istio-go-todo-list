@@ -11,5 +11,13 @@ stages:
         cd $GOPATH/src/yom535.coding.net/todo-consumer
         ls -al
         go build .
+- name: 发送镜像
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: yom535/example:v1
+      pushRemote: true
+      registry: registry.us-west-1.aliyuncs.com
 timeout: 60
 notification: {}
