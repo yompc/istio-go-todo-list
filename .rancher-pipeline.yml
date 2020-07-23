@@ -18,6 +18,6 @@ stages:
       buildContext: .
       tag: yom535/example:v1
       pushRemote: true
-      registry: registry.us-west-1.aliyuncs.com
+      registry: 127.0.0.1:34834
 timeout: 60
 notification: {}
