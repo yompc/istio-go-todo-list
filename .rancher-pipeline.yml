@@ -6,6 +6,7 @@ stages:
       shellScript: |-
         ls -al
         mkdir -p $GOPATH/src/yom535.coding.net/todo-consumer
+        cd todo-consumer
         cp -r . $GOPATH/src/yom535.coding.net/todo-consumer
         cd $GOPATH/src/yom535.coding.net/todo-consumer
         ls -al
