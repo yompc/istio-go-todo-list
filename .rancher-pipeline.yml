@@ -1,0 +1,11 @@
+stages:
+- name: 打包
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./todo-consumer/Dockerfile
+      buildContext: .
+      tag: yom535/example:v1
+      pushRemote: true
+      registry: registry.us-west-1.aliyuncs.com
+timeout: 60
+notification: {}
