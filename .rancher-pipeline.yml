@@ -4,6 +4,7 @@ stages:
   - runScriptConfig:
       image: golang:latest
       shellScript: |-
+        ls -al
         mkdir -p $GOPATH/src/yom535.coding.net/todo-consumer
         cp -r . $GOPATH/src/yom535.coding.net/todo-consumer
         cd $GOPATH/src/yom535.coding.net/todo-consumer
