@@ -48,7 +48,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             });
         }
 
-        assert oneByUsername != null;
         return new User(username,oneByUsername.getPassword(),grantedAuthorities);
     }
 }

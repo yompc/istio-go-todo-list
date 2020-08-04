@@ -20,9 +20,7 @@ import org.springframework.security.authentication.AuthenticationManager;
  * @time: 13:17
  */
 @EnableWebSecurity
-@EnableResourceServer
 @Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
