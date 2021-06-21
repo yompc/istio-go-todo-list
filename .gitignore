@@ -7,7 +7,6 @@ target
 bin
 classpath-data.json
 sts-cache
-
 # Compiled class file
 *.class
 *.classpath
